@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#ff758c">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>A Little Message For You ❤️</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="background">
+        <!-- Ambient Animated Light Orbs -->
+        <div class="ambient-orb orb-1"></div>
+        <div class="ambient-orb orb-2"></div>
+        <div class="ambient-orb orb-3"></div>
+
+        <!-- Floating hearts animation container -->
+        <div class="floating-hearts-container" id="heartsContainer"></div>
+
+        <!-- Confetti / Particle Container -->
+        <div class="particle-container" id="particleContainer"></div>
+
+        <!-- 1. LOGIN CARD -->
+        <div class="card login-card" id="loginCard">
+            <div class="badge-ring">
+                <div class="heart-icon pulse">💌</div>
+            </div>
+            
+            <h2 class="card-title">Special Messages</h2>
+            <p class="subtitle">Enter your details to unlock personal messages</p>
+
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="input-group">
+                    <label for="username">User ID</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">👤</span>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            placeholder="Enter your user ID" 
+                            autocomplete="off" 
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🔒</span>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            placeholder="Enter password" 
+                            required
+                        >
+                        <button type="button" class="pwd-toggle-btn" onclick="togglePasswordVisibility()" title="Show/Hide Password">
+                            👁️
+                        </button>
+                    </div>
+                </div>
+
+                <div id="loginError" class="error-msg"></div>
+
+                <button type="submit" class="btn primary-btn shine-effect">
+                    <span>Unlock Messages ❤️</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- 2. MESSAGE CARD (Shown after successful login) -->
+        <div class="card message-card hidden" id="messageCard">
+            <div class="card-top-bar">
+                <span class="user-badge" id="userBadge">
+                    <span class="online-dot"></span>
+                    <span id="badgeName">Sameer</span>
+                </span>
+                <button class="logout-btn" onclick="handleLogout()" title="Logout / Switch User">
+                    <span>Logout</span> 🚪
+                </button>
+            </div>
+
+            <div class="badge-ring" onclick="burstHearts(event)" title="Click me for love!">
+                <div class="heart-icon pulse" id="mainHeart">❤️</div>
+            </div>
+
+            <h1 id="userGreeting" class="card-title">A Little Message</h1>
+
+            <!-- Message Box with Typewriter & Quote marks -->
+            <div class="message-box" onclick="skipTypewriter()" title="Click to finish typing instantly">
+                <span class="quote-mark quote-left">“</span>
+                <p id="message">
+                    <span id="typewriterText"></span><span class="typewriter-cursor">|</span>
+                </p>
+                <span class="quote-mark quote-right">”</span>
+            </div>
+
+            <!-- Dots & Progress Tracker -->
+            <div class="progress-container">
+                <div class="dots-indicator" id="dotsIndicator"></div>
+                <div class="message-counter" id="messageCounter">
+                    Message 1 of 5
+                </div>
+            </div>
+
+            <!-- Reaction Buttons -->
+            <div class="reactions-bar">
+                <button class="reaction-btn rx-love" onclick="sendReaction('❤️', 'Love', event)" title="Send Love">
+                    <span class="rx-emoji">❤️</span>
+                    <span class="rx-name">Love</span>
+                    <span class="rx-count" id="rx-love">0</span>
+                </button>
+                <button class="reaction-btn rx-hug" onclick="sendReaction('🤗', 'Hug', event)" title="Send Hug">
+                    <span class="rx-emoji">🤗</span>
+                    <span class="rx-name">Hug</span>
+                    <span class="rx-count" id="rx-hug">0</span>
+                </button>
+                <button class="reaction-btn rx-smile" onclick="sendReaction('😊', 'Smile', event)" title="Send Smile">
+                    <span class="rx-emoji">😊</span>
+                    <span class="rx-name">Smile</span>
+                    <span class="rx-count" id="rx-smile">0</span>
+                </button>
+                <button class="reaction-btn rx-blush" onclick="sendReaction('🌸', 'Blush', event)" title="Send Blush">
+                    <span class="rx-emoji">🌸</span>
+                    <span class="rx-name">Blush</span>
+                    <span class="rx-count" id="rx-blush">0</span>
+                </button>
+            </div>
+
+            <div class="action-buttons-group">
+                <button class="btn primary-btn shine-effect" id="nextMsgBtn" onclick="nextMessage(event)">
+                    <span>Next Message ✨</span>
+                </button>
+
+                <!-- Surprise Envelope Button (Shown on final message) -->
+                <button class="btn surprise-btn hidden" id="surpriseBtn" onclick="openSurpriseModal(event)">
+                    <span>🎁 Open Special Surprise!</span>
+                </button>
+            </div>
+
+            <!-- Leave a Note Button -->
+            <div class="note-link-container">
+                <button class="text-link-btn" onclick="openNoteModal()">
+                    💌 Leave a note for Raja
+                </button>
+            </div>
+
+            <div class="signature">
+                — with love, <span class="author-name">Raja</span> ❤️
+            </div>
+        </div>
+
+    <!-- 3. SURPRISE MODAL (A Heartfelt Lifetime Promise) -->
+    <div class="modal-overlay hidden" id="surpriseModal">
+        <div class="modal-card promise-modal-card">
+            <button class="modal-close-btn" onclick="closeSurpriseModal()">✕</button>
+            <div class="wax-seal-badge">
+                <span class="wax-seal-icon" id="surpriseIcon">✨</span>
+            </div>
+            <h2 class="modal-title" id="surpriseTitle">A Lifetime Promise ✨</h2>
+            
+            <div class="promise-parchment">
+                <div class="parchment-header">
+                    <span class="parchment-tag">✦ GOLDEN BOND OF TRUST ✦</span>
+                </div>
+                <h3 id="promiseHeadline">Always In Your Corner</h3>
+                <p id="promiseMessage" class="promise-body">
+                    <!-- Dynamic personalized promise inserted by JS -->
+                </p>
+                <div class="parchment-signature">
+                    <span>Always here for you,</span>
+                    <strong>— Raja ❤️</strong>
+                </div>
+            </div>
+            
+            <button class="btn primary-btn shine-effect" onclick="claimSurprise(event)">
+                <span id="surpriseBtnText">Seal Our Bond Forever 🤝❤️</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- 4. LEAVE A NOTE MODAL -->
+    <div class="modal-overlay hidden" id="noteModal">
+        <div class="modal-card">
+            <button class="modal-close-btn" onclick="closeNoteModal()">✕</button>
+            <div class="badge-ring mini">
+                <div class="heart-icon">✉️</div>
+            </div>
+            <h2 class="modal-title">Leave a Note for Raja</h2>
+            <p class="subtitle">Write anything you'd like to say!</p>
+            
+            <form onsubmit="handleSendNote(event)">
+                <div class="input-group">
+                    <textarea 
+                        id="userNoteText" 
+                        rows="4" 
+                        placeholder="Write your sweet message or thoughts here..." 
+                        required
+                    ></textarea>
+                </div>
+                <button type="submit" class="btn primary-btn shine-effect">
+                    <span>Send Note to Raja 💌</span>
+                </button>
+            </form>
+            <div id="noteStatus" class="note-status-msg"></div>
+        </div>
+    </div>
+
+    <!-- 5. RAJA ADMIN / INBOX CARD (Shown when user logs in with raja / 12345) -->
+    <div class="card raja-inbox-card hidden" id="rajaCard">
+        <div class="card-top-bar">
+            <span class="user-badge admin-badge">👑 Raja's Desk</span>
+            <button class="logout-btn" onclick="handleLogout()" title="Logout">
+                <span>Logout</span> 🚪
+            </button>
+        </div>
+
+        <div class="badge-ring">
+            <div class="heart-icon pulse">📬</div>
+        </div>
+
+        <h2 class="card-title">Received Notes</h2>
+        <p class="subtitle">Messages left by your friends</p>
+
+        <div class="inbox-list" id="inboxNotesList">
+            <!-- Dynamically populated from localStorage -->
+        </div>
+
+        <div class="inbox-actions">
+            <button class="btn secondary-btn" onclick="clearAllNotes()">
+                🗑️ Clear All Notes
+            </button>
+        </div>
+    </div>
+
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-notification" id="toastNotification"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
