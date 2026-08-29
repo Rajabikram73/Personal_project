@@ -1,0 +1,43 @@
+# Little Message Webpage ❤️
+
+A romantic, personalized web application featuring multi-user profiles, dynamic typewriter animations, interactive reactions, confetti particle bursts, and a secret reply box.
+
+## 👥 User Accounts & Credentials
+
+| User ID | Password | Profile |
+| :--- | :--- | :--- |
+| `sameer` | `12345` | Sameer |
+| `subhadra` | `12345` | Subhadra |
+| `elina` | `12345` | Elina |
+| `raja` | `12345` | Raja (Admin / View Received Notes) |
+
+---
+
+## ✨ Features
+
+1. **🔐 Multi-User Authentication**: Private login screen without exposing user lists.
+2. **⌨️ Typewriter Effect**: Messages write out smoothly letter-by-letter with a glowing cursor. Click the message to reveal instantly!
+3. 💖 **Interactive Reaction Bar**: Tap `❤️ Love`, `🤗 Hug`, `😊 Smile`, or `🌸 Blush` to send flying reactions.
+4. 💥 **Heart & Sparkle Particle Confetti**: Particle bursts trigger when cycling messages, clicking the main heart, or sending reactions.
+5. 📜 **Golden Lifetime Promise Letter**: Unlocks on the final message with a personalized wax-sealed bond promise for each person (Brotherhood bond for Sameer, 2016 best friends bond for Elina, and care promise for Subhadra).
+6. 💌 **Leave a Note for Raja**: Allows users to write a response note back to you, which gets stored in `localStorage`.
+7. 👑 **Raja's Secret Desk / Inbox**: Log in as `raja` / `12345` to view and manage all notes sent by your friends!
+8. 🚪 **Logout / Switch Profile**: Easily switch between accounts anytime.
+
+---
+
+## 📁 Project Structure
+
+```
+message-webpage/
+│
+├── index.html   # Main layout, modals, and templates
+├── style.css    # Modern glassmorphism, responsive styles & animations
+├── script.js    # Logic for audio synth, typewriter, particles & auth
+└── README.md    # Documentation
+```
+
+## 🚀 How to Run
+
+- **Direct in Browser**: Double-click [index.html](file:///d:/practice/personal_project/message-webpage/index.html).
+- **Via ASP.NET Core**: Press **F5 (Start Debugging)** in Visual Studio / IDE.
