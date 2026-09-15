@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=6.0">
 </head>
 <body>
 
@@ -96,13 +96,11 @@
 
             <h1 id="userGreeting" class="card-title">A Little Message</h1>
 
-            <!-- Message Box with Typewriter & Quote marks -->
-            <div class="message-box" onclick="skipTypewriter()" title="Click to finish typing instantly">
-                <span class="quote-mark quote-left">“</span>
+            <!-- Message Box with Typewriter & Quotes -->
+            <div class="message-box" id="messageBox" onclick="skipTypewriter()" title="Click to finish typing instantly">
                 <p id="message">
-                    <span id="typewriterText"></span><span class="typewriter-cursor">|</span>
+                    <span class="inline-quote quote-start">“</span><span id="typewriterText"></span><span class="typewriter-cursor">|</span><span class="inline-quote quote-end">”</span>
                 </p>
-                <span class="quote-mark quote-right">”</span>
             </div>
 
             <!-- Dots & Progress Tracker -->
@@ -138,9 +136,14 @@
             </div>
 
             <div class="action-buttons-group">
-                <button class="btn primary-btn shine-effect" id="nextMsgBtn" onclick="nextMessage(event)">
-                    <span>Next Message ✨</span>
-                </button>
+                <div class="nav-buttons-row">
+                    <button class="btn secondary-nav-btn" id="prevMsgBtn" onclick="prevMessage(event)" title="Previous Message">
+                        <span>◀ Prev</span>
+                    </button>
+                    <button class="btn primary-btn shine-effect primary-nav-btn" id="nextMsgBtn" onclick="nextMessage(event)">
+                        <span>Next Message ▶</span>
+                    </button>
+                </div>
 
                 <!-- Surprise Envelope Button (Shown on final message) -->
                 <button class="btn surprise-btn hidden" id="surpriseBtn" onclick="openSurpriseModal(event)">
@@ -248,6 +251,6 @@
     <!-- Toast Notification -->
     <div class="toast-notification" id="toastNotification"></div>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=6.0"></script>
 </body>
 </html>

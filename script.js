@@ -117,8 +117,118 @@ College ke dino se lekar ab tak jitni bhi mushkilein aayi hain, tera mere saath 
 
 Meri life mein rehne ke liye aur hamesha mujhe support karne ke liye thank you, yaar. You're irreplaceable! 💎`
         ]
+    },
+    "gudly": {
+        name: "Gudly",
+        password: "12345",
+        icon: "✨",
+        greetingEmoji: "❤️",
+        particles: ["✨", "❤️", "💖", "🌸", "👑", "🥰"],
+        promiseHeadline: "2009 to Infinity — My Gudly ✨",
+        promiseText: `2009 mein ek mutual connection ki wajah se shuru hui humari dosti, aaj 18 saal baad bhi utni hi special hai. Beech mein 2–3 saal tak touch mein nahi the, lekin jab dobara mile, tab laga jaise beech mein kuch hua hi nahi tha.
+
+Aur uske baad se humara bond kabhi khatam nahi hua. ❤️
+
+Tu sirf meri friend nahi hai, tu meri life ke un logon mein se hai jinke saath main bina soche apni har baat share kar sakta hoon. Jab tu kisi cheez mein stuck hoti hai, mujhe call karti hai, meri advice leti hai aur uspe trust bhi karti hai. Aur jis tarah tu mere difficult times mein, especially medical situations mein, mere saath khadi rahi hai, main woh kabhi nahi bhool sakta.
+
+Tu cute bhi hai, strong bhi hai, aur thodi si pagal bhi. 😂❤️
+Main hamesha tera support karunga, aur mujhe pata hai ki tu bhi hamesha mere saath khadi rahegi.
+
+Aur haan, mere phone mein tera naam Chand nahi, "Gudly" hai — kyunki kuch logon ke liye naam se zyada ek special naam hota hai. 😌❤️
+
+2009 se lekar aaj tak… aur aage bhi,
+Tu meri favourite friends mein se nahi,
+Tu meri irreplaceable friend hai.
+
+Always my Gudly. 👑❤️`,
+        promiseBtnText: "Best Friends Forever 💎✨",
+        promiseToast: "✨ 18 Years of Friendship — Gudly Forever! ❤️👑",
+        messages: [
+            `Kabhi socha nahi tha ki ek mutual connection se shuru hui dosti itni strong ho jayegi.
+
+2009 mein shayad hum dono ko idea bhi nahi tha ki aane wale saalon mein hum ek dusre ki life ka itna important part ban jayenge.
+
+School ke baad 2–3 saal tak baat nahi hui, life apni-apni direction mein chali gayi… lekin jab hum dobara mile, toh friendship ko restart karne ki zarurat hi nahi padi.
+
+Bas wahi connection, wahi comfort aur wahi bonding wapas aa gayi. ❤️
+
+Kuch friendships time ke saath fade ho jaati hain,
+aur kuch friendships time ke saath aur strong hoti jaati hain.
+
+Ours is definitely the second one. 🥰`,
+
+            `Gudly, tu jaanti hai na, humari friendship mein sabse achhi cheez kya hai?
+
+Hum ek dusre ke saamne kuch pretend nahi karte.
+
+Life mein kya chal raha hai, kya problem hai, kya khushi hai, kya tension hai — hum bina filter ke share kar lete hain.
+
+Jab tu kisi cheez mein stuck hoti hai, tera call aata hai — "Yaar, ek problem hai…" 😂
+Aur phir meri advice lene ke baad usko seriously follow bhi karti hai.
+
+Lekin honestly, mujhe sabse zyada value is baat ki hai ki tune bhi mujhe kabhi akela feel nahi hone diya.
+
+Mere difficult times mein, especially jab mujhe medical help aur support ki zarurat thi, tu mere saath khadi rahi.
+
+Dosti sirf good times share karne ka naam nahi hai.
+Dosti tab samajh aati hai jab life difficult ho aur phir bhi koi bole —
+"Main hoon na."
+
+Thank you for always being that person. ❤️🤝`,
+
+            `Yaar Chand, tujhe shayad pata bhi nahi hai ki tu mere family ke liye bhi kitni special hai.
+
+Tu sirf meri favourite friend nahi hai, tu mere family ki bhi favourite hai. ❤️
+
+Aur Bangalore mein jab hum mile the na, woh time bhi apne aap mein ek beautiful memory hai.
+
+Koi fancy plan nahi,
+koi special occasion nahi,
+bas hum dono saath the, baatein kar rahe the, has rahe the aur apne usual pagalpan mein busy the. 😂❤️
+
+Shayad isi wajah se humari friendship special hai.
+
+Humare paas perfect memories nahi hain,
+but we have real memories.
+
+Aur real friendships ki value hi sabse zyada hoti hai. ✨`,
+
+            `Main shayad roz nahi bolta,
+aur kabhi-kabhi toh bilkul express bhi nahi karta…
+
+Lekin aaj dil se ek baat bolna hai.
+
+18 saal mein life kitni change ho gayi —
+school khatam hua,
+life ke phases badle,
+log aaye aur chale gaye,
+hum dono ki apni-apni problems aur responsibilities aayi…
+
+Lekin ek cheez same rahi —
+humari friendship. ❤️
+
+Tu meri life ke un rare people mein se hai jise main explain nahi karta,
+bas trust karta hoon.
+
+Aur agar kabhi life mein tu doubt kare ki tere saath kaun khada rahega,
+toh ek naam yaad rakhna —
+main.
+
+Chahe kitna bhi time ho jaye,
+kitni bhi distance ho,
+kitni bhi life change ho…
+
+My Gudly will always be my Gudly. ❤️👑
+
+2009 → 2026 → Forever. ♾️✨`
+        ]
     }
 };
+
+// Aliases so Chand, Gudli, and Gudly all work seamlessly
+users["chand"] = users["gudly"];
+users["gudli"] = users["gudly"];
+users["chand (gudly)"] = users["gudly"];
 
 let currentUser = null;
 let currentMessageIndex = 0;
@@ -146,13 +256,16 @@ function togglePasswordVisibility() {
 function handleLogin(event) {
     event.preventDefault();
 
-    const usernameInput = document.getElementById("username").value.trim().toLowerCase();
-    const passwordInput = document.getElementById("password").value.trim();
+    const rawUser = (document.getElementById("username").value || "").trim().toLowerCase();
+    const rawPass = (document.getElementById("password").value || "").trim();
     const errorElement = document.getElementById("loginError");
     const loginCard = document.getElementById("loginCard");
 
+    // Clean user string removing punctuation & spaces
+    const cleanUser = rawUser.replace(/[^a-z0-9]/g, "");
+
     // Special Admin / Desk login for Raja to view received notes
-    if (usernameInput === "raja" && passwordInput === "12345") {
+    if ((rawUser === "raja" || cleanUser === "raja") && rawPass === "12345") {
         errorElement.innerText = "";
         loginCard.classList.add("hidden");
         const rajaCard = document.getElementById("rajaCard");
@@ -162,9 +275,25 @@ function handleLogin(event) {
         return;
     }
 
+    // Resolve target user object
+    let targetUser = users[rawUser] || users[cleanUser];
+
+    // Intelligent match for friend variations
+    if (!targetUser) {
+        if (rawUser.includes("gudly") || rawUser.includes("chand") || rawUser.includes("gudli") || cleanUser.includes("gudly") || cleanUser.includes("chand") || cleanUser.includes("gudli")) {
+            targetUser = users["gudly"];
+        } else if (rawUser.includes("sameer") || cleanUser.includes("sameer")) {
+            targetUser = users["sameer"];
+        } else if (rawUser.includes("subhadra") || cleanUser.includes("subhadra")) {
+            targetUser = users["subhadra"];
+        } else if (rawUser.includes("elina") || cleanUser.includes("elina")) {
+            targetUser = users["elina"];
+        }
+    }
+
     // Check credentials
-    if (users[usernameInput] && users[usernameInput].password === passwordInput) {
-        currentUser = users[usernameInput];
+    if (targetUser && targetUser.password === rawPass) {
+        currentUser = targetUser;
         currentMessageIndex = 0;
         errorElement.innerText = "";
 
@@ -204,7 +333,7 @@ function renderRajaInbox() {
 
     const savedNotes = JSON.parse(localStorage.getItem("notes_for_raja") || "[]");
     if (savedNotes.length === 0) {
-        listContainer.innerHTML = `<div class="empty-inbox">📬 No notes received yet!<br>When Sameer, Subhadra, or Elina leave a note, it will appear here ✨</div>`;
+        listContainer.innerHTML = `<div class="empty-inbox">📬 No notes received yet!<br>When Sameer, Subhadra, Elina, or Gudly leave a note, it will appear here ✨</div>`;
         return;
     }
 
@@ -230,6 +359,32 @@ function clearAllNotes() {
 // ==========================================
 // 2. TYPEWRITER EFFECT & MESSAGE DISPLAY
 // ==========================================
+let userScrolledUp = false;
+
+function setupMessageBoxScrollListener() {
+    const msgBox = document.getElementById("messageBox") || document.querySelector(".message-box");
+    if (!msgBox) return;
+
+    msgBox.addEventListener("scroll", () => {
+        // If user is scrolled up away from bottom (> 35px), don't force them back down
+        const distFromBottom = msgBox.scrollHeight - msgBox.scrollTop - msgBox.clientHeight;
+        userScrolledUp = distFromBottom > 35;
+    }, { passive: true });
+
+    msgBox.addEventListener("wheel", (e) => {
+        if (e.deltaY < 0) {
+            userScrolledUp = true;
+        }
+    }, { passive: true });
+
+    msgBox.addEventListener("touchmove", () => {
+        const distFromBottom = msgBox.scrollHeight - msgBox.scrollTop - msgBox.clientHeight;
+        if (distFromBottom > 35) {
+            userScrolledUp = true;
+        }
+    }, { passive: true });
+}
+
 function updateDotsIndicator() {
     const container = document.getElementById("dotsIndicator");
     if (!container || !currentUser) return;
@@ -251,6 +406,8 @@ function displayMessage() {
         clearTimeout(typewriterTimeout);
     }
 
+    userScrolledUp = false;
+
     const counterElement = document.getElementById("messageCounter");
     const totalMessages = currentUser.messages.length;
     counterElement.innerText = `Message ${currentMessageIndex + 1} of ${totalMessages}`;
@@ -258,7 +415,7 @@ function displayMessage() {
     updateDotsIndicator();
 
     // Reset message box scroll position to top
-    const msgBox = document.querySelector(".message-box");
+    const msgBox = document.getElementById("messageBox") || document.querySelector(".message-box");
     if (msgBox) msgBox.scrollTop = 0;
 
     currentFullText = currentUser.messages[currentMessageIndex];
@@ -274,14 +431,19 @@ function displayMessage() {
         surpriseBtn.classList.add("hidden");
     }
 
-    // Dynamic typing speed: Smooth and responsive for both short and long paragraphs
-    const typingDelay = Math.max(12, Math.min(25, Math.floor(2600 / currentFullText.length)));
+    // Dynamic typing speed: Smooth and responsive
+    const typingDelay = Math.max(10, Math.min(22, Math.floor(2200 / currentFullText.length)));
 
     let charIndex = 0;
     function typeNextChar() {
         if (charIndex < currentFullText.length) {
             textContainer.innerText += currentFullText.charAt(charIndex);
             charIndex++;
+            
+            // Auto scroll down during typing ONLY if user is not manually scrolling up
+            if (!userScrolledUp && msgBox && msgBox.scrollHeight - msgBox.clientHeight > 20) {
+                msgBox.scrollTop = msgBox.scrollHeight;
+            }
             typewriterTimeout = setTimeout(typeNextChar, typingDelay);
         } else {
             isTyping = false;
@@ -292,11 +454,27 @@ function displayMessage() {
 }
 
 function skipTypewriter() {
-    if (isTyping && currentUser) {
-        clearTimeout(typewriterTimeout);
+    if (currentUser) {
+        if (typewriterTimeout) clearTimeout(typewriterTimeout);
         document.getElementById("typewriterText").innerText = currentFullText;
         isTyping = false;
+        userScrolledUp = false;
+        const msgBox = document.getElementById("messageBox") || document.querySelector(".message-box");
+        if (msgBox) msgBox.scrollTop = 0;
     }
+}
+
+function prevMessage(event) {
+    if (!currentUser) return;
+
+    if (event) {
+        const pos = getCoords(event);
+        const symbols = currentUser.particles || ["❤️", "✨", "🌸", "💖", "🎉"];
+        burstParticles(pos.x, pos.y, symbols);
+    }
+
+    currentMessageIndex = (currentMessageIndex - 1 + currentUser.messages.length) % currentUser.messages.length;
+    displayMessage();
 }
 
 function nextMessage(event) {
@@ -513,6 +691,7 @@ function createFloatingHearts() {
 // Start background animations & auto-focus
 window.addEventListener("DOMContentLoaded", () => {
     createFloatingHearts();
+    setupMessageBoxScrollListener();
     const userEl = document.getElementById("username");
     if (userEl) userEl.focus();
 });

@@ -415,69 +415,71 @@ html, body {
    ========================================== */
 .message-box {
     position: relative;
-    min-height: 155px;
-    max-height: 50dvh;
+    min-height: 220px;
+    max-height: 52vh;
+    max-height: 52dvh;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 22px 20px;
-    margin: 14px 0 12px 0;
-    background: linear-gradient(135deg, rgba(255, 245, 248, 0.95) 0%, rgba(255, 235, 242, 0.8) 100%);
+    display: block;
+    text-align: left;
+    padding: 24px 22px 24px 24px;
+    margin: 14px 0 14px 0;
+    background: linear-gradient(135deg, rgba(255, 248, 250, 0.98) 0%, rgba(255, 238, 244, 0.92) 100%);
     border-radius: 22px;
     border: 1.5px dashed rgba(255, 51, 102, 0.35);
     cursor: pointer;
     touch-action: manipulation;
     transition: all 0.25s ease;
+    scroll-behavior: smooth;
 }
 
 .message-box::-webkit-scrollbar {
-    width: 5px;
+    width: 6px;
 }
 
 .message-box::-webkit-scrollbar-thumb {
-    background: rgba(255, 51, 102, 0.25);
+    background: rgba(255, 51, 102, 0.35);
     border-radius: 10px;
 }
 
 .message-box:hover {
-    background: linear-gradient(135deg, rgba(255, 245, 248, 1) 0%, rgba(255, 230, 240, 0.95) 100%);
-    border-color: rgba(255, 51, 102, 0.55);
+    background: linear-gradient(135deg, rgba(255, 250, 252, 1) 0%, rgba(255, 235, 242, 0.96) 100%);
+    border-color: rgba(255, 51, 102, 0.6);
     transform: translateY(-1px);
 }
 
-.quote-mark {
-    position: absolute;
+.inline-quote {
     font-family: var(--font-heading);
-    font-size: 44px;
-    line-height: 1;
-    color: rgba(255, 51, 102, 0.15);
+    font-size: 1.55em;
+    line-height: 0;
+    color: var(--primary-color);
+    opacity: 0.75;
+    display: inline-block;
+    vertical-align: -0.12em;
     user-select: none;
     pointer-events: none;
 }
 
-.quote-left {
-    top: 6px;
-    left: 10px;
+.quote-start {
+    margin-right: 4px;
 }
 
-.quote-right {
-    bottom: -8px;
-    right: 10px;
+.quote-end {
+    margin-left: 4px;
 }
 
 #message {
     position: relative;
     z-index: 2;
-    font-size: clamp(14.5px, 3.8vw, 16.5px);
-    line-height: 1.75;
-    color: #334155;
-    font-style: italic;
-    white-space: pre-line;
+    font-size: clamp(15px, 3.8vw, 16.5px);
+    line-height: 1.85;
+    color: #1e293b;
+    font-style: normal;
+    white-space: pre-wrap;
     word-break: break-word;
-    margin: 0 auto;
+    margin: 0;
     width: 100%;
+    text-align: left;
 }
 
 .typewriter-cursor {
@@ -677,6 +679,38 @@ html, body {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 100%;
+}
+
+.nav-buttons-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+}
+
+.secondary-nav-btn {
+    flex: 0 0 110px;
+    min-height: 48px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1.5px solid #e2e8f0;
+    color: #475569;
+    font-size: 14.5px;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.secondary-nav-btn:hover,
+.secondary-nav-btn:active {
+    background: #fff0f3;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.primary-nav-btn {
+    flex: 1;
+    min-height: 48px;
 }
 
 .surprise-btn {
@@ -870,11 +904,12 @@ html, body {
 }
 
 .promise-body {
-    font-size: 14px;
+    font-size: 14.5px;
     color: #451a03;
-    line-height: 1.7;
-    font-style: italic;
-    white-space: pre-line;
+    line-height: 1.8;
+    font-style: normal;
+    white-space: pre-wrap;
+    text-align: left;
     margin-bottom: 14px;
 }
 

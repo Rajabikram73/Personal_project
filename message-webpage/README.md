@@ -9,6 +9,7 @@ A romantic, personalized web application featuring multi-user profiles, dynamic 
 | `sameer` | `12345` | Sameer |
 | `subhadra` | `12345` | Subhadra |
 | `elina` | `12345` | Elina |
+| `gudly` or `chand` | `12345` | Chand (Gudly) |
 | `raja` | `12345` | Raja (Admin / View Received Notes) |
 
 ---
@@ -19,7 +20,7 @@ A romantic, personalized web application featuring multi-user profiles, dynamic 
 2. **⌨️ Typewriter Effect**: Messages write out smoothly letter-by-letter with a glowing cursor. Click the message to reveal instantly!
 3. 💖 **Interactive Reaction Bar**: Tap `❤️ Love`, `🤗 Hug`, `😊 Smile`, or `🌸 Blush` to send flying reactions.
 4. 💥 **Heart & Sparkle Particle Confetti**: Particle bursts trigger when cycling messages, clicking the main heart, or sending reactions.
-5. 📜 **Golden Lifetime Promise Letter**: Unlocks on the final message with a personalized wax-sealed bond promise for each person (Brotherhood bond for Sameer, 2016 best friends bond for Elina, and care promise for Subhadra).
+5. 📜 **Golden Lifetime Promise Letter**: Unlocks on the final message with a personalized wax-sealed bond promise for each person (Brotherhood bond for Sameer, 2016 best friends bond for Elina, care promise for Subhadra, and 18-year friendship bond for Chand / Gudly).
 6. 💌 **Leave a Note for Raja**: Allows users to write a response note back to you, which gets stored in `localStorage`.
 7. 👑 **Raja's Secret Desk / Inbox**: Log in as `raja` / `12345` to view and manage all notes sent by your friends!
 8. 🚪 **Logout / Switch Profile**: Easily switch between accounts anytime.
